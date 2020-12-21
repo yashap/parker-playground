@@ -43,9 +43,14 @@ purge:
 	$(MAKE) install
 
 .PHONY: format
-## Run code formatting
+## Format code
 format:
 	yarn prettier --write .
+
+.PHONY: check-format
+## Check code formatting
+check-format:
+	yarn prettier --check .
 
 .PHONY: run-bundler
 ## Run Metro (React Native JS bundler)
@@ -61,3 +66,8 @@ run-android:
 ## Run app in the iOS emulator (must have `make run-bundler` running in another shell)
 run-ios:
 	npx react-native run-ios
+
+.PHONY: test
+## Run the tests
+test:
+	yarn test --watchAll
