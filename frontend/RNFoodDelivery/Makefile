@@ -38,7 +38,7 @@ install:
 ## Try purging everything when your build is really broken
 purge:
 	yarn cache clean
-	rm yarn.lock ios/Podfile.lock
+	rm -f yarn.lock ios/Podfile.lock
 	rm -rf node_modules/
 	$(MAKE) install
 
