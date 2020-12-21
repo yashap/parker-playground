@@ -34,6 +34,14 @@ install:
 	yarn install
 	cd ios; pod install
 
+.PHONY: purge
+## Try purging everything when your build is really broken
+purge:
+	yarn cache clean
+	rm yarn.lock ios/Podfile.lock
+	rm -rf node_modules/
+	$(MAKE) install
+
 .PHONY: format
 ## Run code formatting
 format:
