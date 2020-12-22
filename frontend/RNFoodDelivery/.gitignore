@@ -1,5 +1,6 @@
-# Project specific
+# Secrets
 .env
+**/*/res/values/secrets.xml
 
 # OSX
 #
@@ -31,6 +32,7 @@ build/
 .gradle
 local.properties
 *.iml
+**/*/java_pid*.hprof
 
 # Visual Studio Code
 #

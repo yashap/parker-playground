@@ -28,6 +28,13 @@ help:
 debug:
 	@echo ROOT_DIR=$(ROOT_DIR)
 
+.PHONY: clean
+## Clean the build (normally followed by `make install`)
+clean:
+	yarn cache clean
+	cd ios; xcodebuild clean
+	cd android; ./gradlew clean
+
 .PHONY: install
 ## Install all dependencies
 install:
@@ -36,8 +43,7 @@ install:
 
 .PHONY: purge
 ## Try purging everything when your build is really broken
-purge:
-	yarn cache clean
+purge: clean
 	rm -f yarn.lock ios/Podfile.lock
 	rm -rf node_modules/
 	$(MAKE) install

@@ -17,6 +17,15 @@ The ordering app from [the Pusher food delivery tutorial](https://pusher.com/tut
     NGROK_HTTPS_URL="YOUR NGROK HTTPS URL"
     ```
     * Setup Pusher Channels, Google Cloud and ngrok as described [here](https://pusher.com/tutorials/food-ordering-app-react-native-part-1)
+    * Add the various keys to the `.env` file
+* Create a `android/app/src/main/res/values/secrets.xml` file with the following structure:
+    ```xml
+    <?xml version="1.0" encoding="utf-8"?>
+    <resources>
+        <string name="google_maps_api_key">YOUR GOOGLE API KEY</string>
+    </resources>
+    ```
+    * Add the same Google Maps API key as in your `.env` file
 
 ### Dev Workflow
 

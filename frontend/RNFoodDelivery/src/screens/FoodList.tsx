@@ -5,7 +5,8 @@ class FoodList extends Component {
   render() {
     return (
       <View style={{flex: 1}}>
-        <Text>FoodList</Text>
+        <Text>This is an item</Text>
+        <Text>This is another item</Text>
       </View>
     );
   }
