@@ -10,6 +10,5 @@ class FoodDetails extends Component {
     );
   }
 }
-//
 
 export default FoodDetails;

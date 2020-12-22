@@ -1,20 +1,18 @@
 import React, {Fragment} from 'react';
-import {SafeAreaView, StatusBar, View, StyleSheet} from 'react-native';
+import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
 
-import Root from './Root';
+import Router from './Router';
 
 const App = () => {
   return (
     <Fragment>
       <StatusBar barStyle="light-content" />
       <SafeAreaView style={styles.container}>
-        <Root />
+        <Router />
       </SafeAreaView>
     </Fragment>
   );
 };
-
-//
 
 const styles = StyleSheet.create({
   container: {

@@ -1,11 +1,12 @@
-function sumofArray(sum, num) {
-  return sum + num;
+interface Item {
+  price: number;
+  qty: number;
 }
 
-const getSubTotal = (items) => {
+const getSubTotal = (items: Item[]) => {
   if (items.length) {
     const subtotals = items.map((item) => item.price * item.qty);
-    return subtotals.reduce(sumofArray);
+    return subtotals.reduce((accum, value) => accum + value);
   }
   return 0;
 };

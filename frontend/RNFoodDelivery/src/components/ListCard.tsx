@@ -1,7 +1,16 @@
 import React from 'react';
 import {TouchableOpacity, View, Image, Text, StyleSheet} from 'react-native';
+import Food from '../models/Food';
+import Config from 'react-native-config';
 
-const ListCard = ({item, viewItem}) => {
+const BASE_URL = Config.NGROK_HTTPS_URL;
+
+interface ListCardProps {
+  item: Food;
+  viewItem: (item: Food) => void;
+}
+
+const ListCard = ({item, viewItem}: ListCardProps) => {
   return (
     <TouchableOpacity
       onPress={() => {
@@ -11,7 +20,7 @@ const ListCard = ({item, viewItem}) => {
         <View style={styles.imageWrapper}>
           <Image
             style={styles.image}
-            source={{uri: `http://192.168.1.6:5000/images/${item.image}`}}
+            source={{uri: `${BASE_URL}/images/${item.image}`}}
           />
         </View>
         <View>
@@ -21,7 +30,6 @@ const ListCard = ({item, viewItem}) => {
       </View>
     </TouchableOpacity>
   );
-  //
 };
 
 const styles = StyleSheet.create({

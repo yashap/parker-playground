@@ -1,15 +1,109 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, StyleSheet, TextInput, Button, FlatList} from 'react-native';
+import axios from 'axios';
 
-class FoodList extends Component {
+import NavHeaderRight from '../components/NavHeaderRight';
+import ListCard from '../components/ListCard';
+import Config from 'react-native-config';
+import Food from '../models/Food';
+
+const BASE_URL = Config.NGROK_HTTPS_URL;
+
+type FoodListProps = object; // TODO: read up on react navigation, understand navigation props
+
+interface FootListState {
+  foods: Food[];
+  query?: string;
+}
+
+class FoodList extends Component<FoodListProps, FootListState> {
+  static navigationOptions = ({navigation}) => {
+    return {
+      title: 'Hungry?',
+      headerRight: () => <NavHeaderRight />,
+    };
+  };
+
+  state: FootListState = {
+    foods: [], // list of foods to be rendered on the screen
+    query: '',
+  };
+
+  async componentDidMount() {
+    // fetch the array of foods from the server
+    const url = `${BASE_URL}/foods`;
+    try {
+      const foodsResponse = await axios.get(url);
+      this.setState({foods: foodsResponse.data.foods});
+    } catch (err) {
+      console.error(`Failed to GET ${url}: ${err}`);
+      // TODO: error toast or something
+    }
+  }
+
   render() {
+    const {foods, query} = this.state;
     return (
-      <View style={{flex: 1}}>
-        <Text>This is an item</Text>
-        <Text>This is another item</Text>
+      <View style={styles.wrapper}>
+        <View style={styles.topWrapper}>
+          <View style={styles.textInputWrapper}>
+            <TextInput
+              style={styles.textInput}
+              onChangeText={this.onChangeQuery}
+              value={query}
+              placeholder={'What are you craving?'}
+            />
+          </View>
+
+          <View style={styles.buttonWrapper}>
+            <Button
+              onPress={() => this.filterList()}
+              title="Go"
+              color="#c53c3c"
+            />
+          </View>
+        </View>
+
+        <FlatList
+          data={foods}
+          renderItem={this.renderFood}
+          contentContainerStyle={styles.list}
+          keyExtractor={(item: Food) => item.id.toString()}
+        />
       </View>
     );
   }
+
+  onChangeQuery = (text: string) => {
+    this.setState({query: text});
+  };
+
+  filterList = async () => {
+    // filter the list of foods by supplying a query
+    const {query} = this.state;
+    const url = query
+      ? `${BASE_URL}/foods?query=${query}`
+      : `${BASE_URL}/foods`;
+    try {
+      const foodsResponse = await axios.get(url);
+      this.setState({
+        foods: foodsResponse.data.foods,
+        query: '',
+      });
+    } catch (err) {
+      console.error(`Failed to GET ${url}: ${err}`);
+      // TODO: error toast or something?
+    }
+  };
+
+  viewItem = (item: Food) => {
+    // navigate to the FoodDetails screen
+    this.props.navigation.navigate('FoodDetails', {item});
+  };
+
+  renderFood = ({item}: {item: Food}) => {
+    return <ListCard item={item} viewItem={this.viewItem} />;
+  };
 }
 
 const styles = StyleSheet.create({

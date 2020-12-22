@@ -10,7 +10,6 @@ class TrackOrder extends Component {
     );
   }
 }
-//
 
 const styles = StyleSheet.create({
   wrapper: {

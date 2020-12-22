@@ -31,16 +31,19 @@ debug:
 .PHONY: clean
 ## Clean the build (normally followed by `make install`)
 clean:
-	cd ios; xcodebuild clean
-	cd android; ./gradlew clean
 	yarn cache clean
-	rm -rf node_modules/
 
 .PHONY: install
 ## Install all dependencies
 install:
 	yarn install
-	cd ios; pod install
+
+.PHONY: purge
+## Try purging everything when your build is really broken
+purge: clean
+	rm -f yarn.lock
+	rm -rf node_modules/
+	$(MAKE) install
 
 .PHONY: format
 ## Format code
@@ -52,20 +55,15 @@ format:
 check-format:
 	yarn prettier --check .
 
-.PHONY: run-bundler
-## Run Metro (React Native JS bundler)
-run-bundler:
-	npx react-native start
+.PHONY: run
+## Run the Food Delivery Service
+run:
+	yarn start
 
-.PHONY: run-android
-## Run app in the Android emulator (must have `make run-bundler` running in another shell)
-run-android:
-	npx react-native run-android
-
-.PHONY: run-ios
-## Run app in the iOS emulator (must have `make run-bundler` running in another shell)
-run-ios:
-	npx react-native run-ios
+.PHONY: ngrok
+## Run ngrok to expose the Food Delivery Service (must be running `make run` in another shell)
+ngrok:
+	ngrok http 5000
 
 .PHONY: test
 ## Run the tests
