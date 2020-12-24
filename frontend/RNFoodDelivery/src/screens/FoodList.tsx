@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {View, StyleSheet, TextInput, Button, FlatList} from 'react-native';
+import {NavigationContainerProps} from 'react-navigation';
 import axios from 'axios';
 
 import NavHeaderRight from '../components/NavHeaderRight';
@@ -9,7 +10,8 @@ import Food from '../models/Food';
 
 const BASE_URL = Config.NGROK_HTTPS_URL;
 
-type FoodListProps = object; // TODO: read up on react navigation, understand navigation props
+// TODO: read up on react navigation, understand navigation props
+interface FoodListProps extends NavigationContainerProps {}
 
 interface FootListState {
   foods: Food[];
@@ -17,7 +19,7 @@ interface FootListState {
 }
 
 class FoodList extends Component<FoodListProps, FootListState> {
-  static navigationOptions = ({navigation}) => {
+  static navigationOptions = () => {
     return {
       title: 'Hungry?',
       headerRight: () => <NavHeaderRight />,
@@ -98,7 +100,9 @@ class FoodList extends Component<FoodListProps, FootListState> {
 
   viewItem = (item: Food) => {
     // navigate to the FoodDetails screen
-    this.props.navigation.navigate('FoodDetails', {item});
+    if (this.props.navigation) {
+      this.props.navigation.navigate('FoodDetails', {item});
+    }
   };
 
   renderFood = ({item}: {item: Food}) => {
