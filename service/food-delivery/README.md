@@ -14,7 +14,7 @@ The backend from [the Pusher food delivery tutorial](https://pusher.com/tutorial
     PUSHER_APP_SECRET="YOUR PUSHER APP SECRET"
     PUSHER_APP_CLUSTER="YOUR PUSHER APP CLUSTER"
     ```
-    * Setup Pusher Channels, Google Cloud and ngrok as described [here](https://pusher.com/tutorials/food-ordering-app-react-native-part-1)
+    * Setup Pusher Channels and ngrok as described [here](https://pusher.com/tutorials/food-ordering-app-react-native-part-1)
     * Add the various keys to the `.env` file
 
 ### Dev Workflow
@@ -26,12 +26,10 @@ nvm use
 # Install all dependencies
 make install
 
-# Run Metro (React Native JS bundler)
-make run-bundler
+# Run the HTTP server
+make run
 
-# Run app in the Android emulator (must have `make run-bundler` running in another shell)
-make run-android
-
-# Run app in the iOS emulator (must have `make run-bundler` running in another shell)
-make run-ios
+# Run ngrok, exposing the local HTTP server to the internet
+make ngrok
+# Then, if running a frontend, get your ngrok HTTPS URL, and use it in the frontend's config
 ```
