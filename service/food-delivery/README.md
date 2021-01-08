@@ -7,15 +7,16 @@ The backend from [the Pusher food delivery tutorial](https://pusher.com/tutorial
 ### Environment Setup
 * [nvm](https://github.com/nvm-sh/nvm)
 * [yarn](https://yarnpkg.com/) - verified to work with v1.22.10
-* Create a `.env` file (in this directory) with the following structure:
-    ```bash
-    PUSHER_APP_ID="YOUR PUSHER APP ID"
-    PUSHER_APP_KEY="YOUR PUSHER APP KEY"
-    PUSHER_APP_SECRET="YOUR PUSHER APP SECRET"
-    PUSHER_APP_CLUSTER="YOUR PUSHER APP CLUSTER"
-    ```
-    * Setup Pusher Channels and ngrok as described [here](https://pusher.com/tutorials/food-ordering-app-react-native-part-1)
-    * Add the various keys to the `.env` file
+* Setup your secrets (not checked into source control)
+    * Create a `.env` file (in this directory) with the following structure:
+        ```bash
+        PUSHER_APP_ID="YOUR PUSHER APP ID"
+        PUSHER_APP_KEY="YOUR PUSHER APP KEY"
+        PUSHER_APP_SECRET="YOUR PUSHER APP SECRET"
+        PUSHER_APP_CLUSTER="YOUR PUSHER APP CLUSTER"
+        ```
+        * Setup Pusher Channels and ngrok as described [here](https://pusher.com/tutorials/food-ordering-app-react-native-part-1)
+        * Add the various keys to the `.env` file
 
 ### Dev Workflow
 
