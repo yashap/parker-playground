@@ -8,4 +8,4 @@ A monorepo containing all frontends and backends for [the Pusher food delivery t
 
 * First, run the [Server](./service/food-delivery/README.md)
 * Then, run the [Ordering App](./frontend/RNFoodDelivery/README.md)
-* Then, run the [DriverApp](./frontend/RNFoodDelivery/README.md) - TODO
+* Then, run the [DriverApp](./frontend/RNFoodDelivery/README.md) - TODO: create this app
