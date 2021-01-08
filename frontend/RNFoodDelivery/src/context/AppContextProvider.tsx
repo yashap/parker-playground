@@ -15,15 +15,15 @@ export class AppContextProvider extends React.Component {
   }
 
   addToCart = (item, qty) => {
-    let found = this.state.cart_items.filter(el => el.id === item.id);
+    let found = this.state.cart_items.filter((el) => el.id === item.id);
     if (found.length == 0) {
-      this.setState(prevState => {
+      this.setState((prevState) => {
         return {cart_items: prevState.cart_items.concat({...item, qty})};
       });
     } else {
-      this.setState(prevState => {
+      this.setState((prevState) => {
         const other_items = prevState.cart_items.filter(
-          el => el.id !== item.id,
+          (el) => el.id !== item.id,
         );
         return {
           cart_items: [...other_items, {...found[0], qty: found[0].qty + qty}],
