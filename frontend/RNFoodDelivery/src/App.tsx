@@ -1,14 +1,8 @@
 import React, {Fragment} from 'react';
 import {LogBox, SafeAreaView, StatusBar, StyleSheet} from 'react-native';
-
-import RootStackNavigator from './navigation/RootStackNavigator';
-import {createAppContainer, NavigationContainer} from 'react-navigation';
+import AppContainer from './navigation/AppContainer';
 
 LogBox.ignoreLogs(['Setting a timer']);
-
-const AppContainer: NavigationContainer = createAppContainer(
-  RootStackNavigator,
-);
 
 const App = () => {
   return (

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Alert, View, Text} from 'react-native';
 import {NavigationContainerProps} from 'react-navigation';
-import NavHeaderRight from '../components/NavHeaderRight';
+import ViewBasket from '../components/ViewBasket';
 import Food from '../models/Food';
 import PageCard from '../components/PageCard';
 
@@ -16,7 +16,7 @@ class FoodDetails extends Component<FoodDetailsProps, FootDetailsState> {
       title: navigation
         ? navigation.getParam('item').name.substr(0, 12) + '...'
         : '',
-      headerRight: () => <NavHeaderRight />,
+      headerRight: () => <ViewBasket />,
     };
   };
 

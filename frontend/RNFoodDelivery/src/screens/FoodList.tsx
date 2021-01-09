@@ -3,7 +3,7 @@ import {View, StyleSheet, TextInput, Button, FlatList} from 'react-native';
 import {NavigationContainerProps} from 'react-navigation';
 import axios from 'axios';
 
-import NavHeaderRight from '../components/NavHeaderRight';
+import ViewBasket from '../components/ViewBasket';
 import ListCard from '../components/ListCard';
 import Config from 'react-native-config';
 import Food from '../models/Food';
@@ -22,7 +22,7 @@ class FoodList extends Component<FoodListProps, FootListState> {
   static navigationOptions = () => {
     return {
       title: 'Hungry?',
-      headerRight: () => <NavHeaderRight />,
+      headerRight: () => <ViewBasket />,
     };
   };
 
